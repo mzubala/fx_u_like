@@ -1,0 +1,31 @@
+#wrap
+  .container
+    .page-header
+      %h1 FX-u-like
+    .well.value
+      - if @value
+        %h1= "#{money_s(@exchange_params[:amount], @exchange_params[:from_currency])} = #{money_s(@value, @exchange_params[:to_currency])}"
+        .muted
+          = "Rate = #{money_s(@rate)}"
+      - else
+        .alert.alert-error= @notice
+    = form_tag "", class: "form-horizontal" do
+      .control-group
+        = label_tag "exchange[date]", "Date", class: "control-label"
+        .controls
+          = date_select :exchange, :date, {default: @exchange_params[:date], use_short_month: true}, {class: "input-small"}
+      .control-group
+        = label_tag "exchange[amount]", "Amount", class: "control-label"
+        .controls
+          = text_field_tag "exchange[amount]", @exchange_params[:amount], class: "input-small"
+      .control-group
+        = label_tag "exchange[from_currency]", "From", class: "control-label"
+        .controls
+          = select_tag "exchange[from_currency]", options_for_select(@currencies, @exchange_params[:from_currency]), class: "input-small"
+      .control-group
+        = label_tag "exchange[to_currency]", "To", class: "control-label"
+        .controls
+          = select_tag "exchange[to_currency]", options_for_select(@currencies, @exchange_params[:to_currency]), class: "input-small"
+      .control-group
+        .controls
+          = submit_tag "Calculate", class: "btn btn-large btn-primary"

@@ -1,0 +1,7 @@
+== Setup
+
+Besides regular rails app setup import some exchange rates using:
+
+rake exchange_rate:import
+
+This command should also be used by cron to import rates periodically.

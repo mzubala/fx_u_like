@@ -1,0 +1,11 @@
+!!! 5
+%html(lang="en")
+  %head
+    %meta(charset="utf-8")
+    %title= "FxULike"
+    = csrf_meta_tags
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+  %body
+    = yield
+
